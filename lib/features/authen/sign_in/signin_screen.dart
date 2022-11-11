@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tren_boong_app/domain/bloc/authentication/login/sign_bloc.dart';
 import 'package:tren_boong_app/features/home/home.dart';
 
 class Login_Screen extends StatefulWidget {
@@ -11,8 +10,6 @@ class Login_Screen extends StatefulWidget {
 }
 
 class _Login_ScreenState extends State<Login_Screen> {
-  SignInBloc bloc = new SignInBloc();
-
   @override
   Widget build(BuildContext context) {
     bool isChecked = false;
@@ -43,13 +40,9 @@ class _Login_ScreenState extends State<Login_Screen> {
                       height: 50,
                     ),
                   ),
-                  // Container(
-                  //   child: Text("English"),
-                  // ),
                 ],
               ),
               Container(
-                //width: double.infinity,
                 child: Column(
                   children: [
                     Padding(
@@ -80,24 +73,25 @@ class _Login_ScreenState extends State<Login_Screen> {
                         ],
                       ),
                     ),
+
+                    // Text Field
                     SizedBox(
-                        width: double.infinity,
-                        height: 50,
-                        child: StreamBuilder(
-                          stream: bloc.phoneStream,
-                          builder: (context, snapshot) => TextField(
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: ("Enter your phone number"),
-                                errorText: snapshot.hasError
-                                    ? snapshot.error.toString()
-                                    : null),
-                          ),
-                        )),
+                      width: double.infinity,
+                      height: 50,
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: ("Enter your phone number"),
+                          //errorText: (""),
+                        ),
+                      ),
+                    ),
+
+                    // Button Next
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                       child: ElevatedButton(
@@ -114,6 +108,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                           },
                           child: Text("Next")),
                     ),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -145,6 +140,8 @@ class _Login_ScreenState extends State<Login_Screen> {
                   child: Text("Or"),
                 ),
               ),
+
+              ///button Google Sign
               Padding(
                 padding: const EdgeInsets.only(bottom: 20.0),
                 child: Container(
